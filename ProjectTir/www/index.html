@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width,user-scalable=no"/>
+	<title>Игра для Android : "ТИР"</title>
+</head>
+<body>
+<script type="text/javascript" src="point.js"></script> 
+<script type="text/javascript" src="engine.js"></script>
+<script type="text/javascript" src="interface.js"></script>
+<script type="text/javascript" src="level.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript" src="about.js"></script>
+<script type="text/javascript" src="describe.js"></script>
+<script type="text/javascript" src="start.js"></script>
+<script type="text/javascript">
+//подключаем движок : point.js
+//затем подключаем engine.js
+//после подключаем файл интерфейса : interface.js
+//затем подключаем файл генератора уровней : level.js
+
+game.newLoop('my_game', function () {
+
+	dt = game.getDT(30);
+
+	fire = false;
+
+	drawFon();	//рисуем фон
+
+	drawTop();	//рисуем обьекти
+	drawInterface(); 	//рисуем интерфейс
+
+	//цикл проверки а был ли совершен выстрел по какому-нибудь объекту
+	if (fire){
+		fireTop();
+	}
+
+
+});
+
+
+ game.newLoop('menu', function() {
+ 	game.clear();
+ 	drawMenu();
+ })
+ 
+  game.newLoop('about', function() {
+ 	game.clear();
+ 	drawAbout();
+ })
+ 
+  game.newLoop('describe', function() {
+      game.clear();
+      drawDescribe();
+  })
+
+
+   game.newLoop('start', function() {
+ 	game.clear();
+ 	drawStart();
+ })
+
+game.startLoop('start', 40);
+</script>
+</body>
+</html>
